@@ -43,19 +43,13 @@ class PublicHomeController extends Controller
             ->having('projects_count', '>', 0)
             ->get();
 
-        $featuredProjects = Project::query()
+        $projects = Project::query()
             ->where('is_active', true)
-            ->where('is_featured', true)
-            ->with(['images'])
+            // ->where('is_featured', true)
+            ->with(['category:id,name,name_en', 'images'])
             ->take(8)
             ->get();
 
-        // $featuredApartments = Apartment::query()
-        //     ->where('is_active', true)
-        //     ->where('is_featured', true)
-        //     ->with(['tower.project', 'orientation', 'images', 'reservations'])
-        //     ->take(12)
-        //     ->get();
 
         $company = [
             'company_name' => $this->settingService->get('company_name'),
@@ -88,13 +82,20 @@ class PublicHomeController extends Controller
                     'id' => $category->id,
                     'name' => $category->name,
                     'name_en' => $category->name_en,
-                    'description' => $category->description,
-                    'description_en' => $category->description_en,
                     'projects_count' => $category->projects_count,
                 ];
             }),
-            'featured_projects' => ProjectResource::collection($featuredProjects),
-            // 'featured_apartments' => ApartmentResource::collection($featuredApartments),
+            'projects' => $projects->map(function ($project) {
+                return [
+                    'id' => $project->id,
+                    'category' => $project->category,
+                    'name' => $project->name,
+                    'name_en' => $project->name_en,
+                    'location_text' => $project->location_text,
+                    'location_text_en' => $project->location_text_en,
+                    'cover_image' => $project->cover_image ? Storage::url($project->cover_image) : null,
+                ];
+            }),
             'company' => $company,
         ], 'Home data fetched successfully');
     }
