@@ -18,7 +18,7 @@ class ProjectCategoryController extends Controller
     {
         $categories = ProjectCategory::query()
             ->withCount('projects')
-            ->when($request->filled('is_active'), fn ($q) => $q->where('is_active', $request->boolean('is_active')))
+            ->when($request->filled('is_active'), fn($q) => $q->where('is_active', $request->boolean('is_active')))
             ->orderBy('sort_order')
             ->latest('id')
             ->paginate($request->integer('per_page', 15));
@@ -39,7 +39,7 @@ class ProjectCategoryController extends Controller
         $category = ProjectCategory::create($request->validated());
 
         return $this->successResponse(
-            new ProjectCategoryResource($category->loadCount('projects')),
+            new ProjectCategoryResource($category->fresh()->loadCount('projects')),
             'Project category created successfully',
             201
         );

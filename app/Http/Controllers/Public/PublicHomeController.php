@@ -72,6 +72,7 @@ class PublicHomeController extends Controller
                     'id' => $banner->id,
                     'title' => $banner->title,
                     'title_en' => $banner->title_en,
+                    'project_category_id' => $banner->project_category_id,
                     'description' => $banner->description,
                     'description_en' => $banner->description_en,
                     'image_url' => $banner->image ? Storage::url($banner->image) : null,
