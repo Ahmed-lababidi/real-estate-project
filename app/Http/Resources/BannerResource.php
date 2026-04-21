@@ -19,15 +19,12 @@ class BannerResource extends JsonResource
             'subtitle_en' => $this->subtitle_en,
             'description' => $this->description,
             'description_en' => $this->description_en,
+            'project_category_id' => $this->project_category_id,
 
             'image_url' => $this->image ? Storage::url($this->image) : null,
             'mobile_image_url' => $this->mobile_image ? Storage::url($this->mobile_image) : null,
 
-            'button_text' => $this->button_text,
-            'button_link' => $this->button_link,
-
             'target_type' => $this->target_type,
-            'target_id' => $this->target_id,
 
             'is_active' => $this->is_active,
             'is_featured' => $this->is_featured,
