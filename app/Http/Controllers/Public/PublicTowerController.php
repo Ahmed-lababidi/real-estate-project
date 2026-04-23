@@ -56,7 +56,7 @@ class PublicTowerController extends Controller
     {
         abort_unless($tower->is_active, 404);
 
-        $tower->load(['project', 'category', 'images'])->loadCount('apartments');
+        $tower->load(['project', 'category', 'images', 'apartments'])->loadCount(['apartments', 'apartmentsAvailable', 'apartmentsReserved', 'apartmentsSold']);
 
         return $this->successResponse(
             new TowerResource($tower),

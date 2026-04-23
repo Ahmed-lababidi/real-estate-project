@@ -60,4 +60,19 @@ class Tower extends Model
     {
         return $this->hasMany(Apartment::class);
     }
+
+    public function apartmentsAvailable()
+    {
+        return $this->hasMany(Apartment::class)->where('status', 'available');
+    }
+
+    public function apartmentsReserved()
+    {
+        return $this->hasMany(Apartment::class)->where('status', 'reserved');
+    }
+
+    public function apartmentsSold()
+    {
+        return $this->hasMany(Apartment::class)->where('status', 'sold');
+    }
 }
