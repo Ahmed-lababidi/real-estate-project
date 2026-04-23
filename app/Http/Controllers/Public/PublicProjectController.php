@@ -128,7 +128,13 @@ class PublicProjectController extends Controller
         ])->loadCount([
             'towers' => fn($q) => $q->where('is_active', true),
             'lands' => fn($q) => $q->where('is_active', true),
+            'landsAvailable',
+            'landsReserved',
+            'landsSold',
             'farms' => fn($q) => $q->where('is_active', true),
+            'farmsAvailable',
+            'farmsReserved',
+            'farmsSold',
         ]);
 
         return $this->successResponse(

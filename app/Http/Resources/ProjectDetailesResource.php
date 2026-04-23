@@ -45,7 +45,13 @@ class ProjectDetailesResource extends JsonResource
 
             'towers_count' => $this->whenCounted('towers'),
             'lands_count' => $this->whenCounted('lands'),
+            'lands_available_count' => $this->whenCounted('landsAvailable'),
+            'lands_reserved_count' => $this->whenCounted('landsReserved'),
+            'lands_sold_count' => $this->whenCounted('landsSold'),
             'farms_count' => $this->whenCounted('farms'),
+            'farms_available_count' => $this->whenCounted('farmsAvailable'),
+            'farms_reserved_count' => $this->whenCounted('farmsReserved'),
+            'farms_sold_count' => $this->whenCounted('farmsSold'),
 
             'towers' => ProjectTowerMiniResource::collection($this->whenLoaded('towers')),
             'lands' => ProjectLandMiniResource::collection($this->whenLoaded('lands')),
