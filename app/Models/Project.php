@@ -68,6 +68,34 @@ class Project extends Model
         return $this->hasMany(Land::class);
     }
 
+    public function landsAvailable()
+    {
+        return $this->hasMany(Land::class)->where('status', 'available');
+    }
+    public function landsReserved()
+    {
+        return $this->hasMany(Land::class)->where('status', 'reserved');
+    }
+    public function landsSold()
+    {
+        return $this->hasMany(Land::class)->where('status', 'sold');
+    }
+
+    public function farmsAvailable()
+    {
+        return $this->hasMany(Farm::class)->where('status', 'available');
+    }
+    public function farmsReserved()
+    {
+        return $this->hasMany(Farm::class)->where('status', 'reserved');
+    }
+    public function farmsSold()
+    {
+        return $this->hasMany(Farm::class)->where('status', 'sold');
+    }
+
+
+
     public function farms()
     {
         return $this->hasMany(Farm::class);
