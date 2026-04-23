@@ -81,6 +81,11 @@ class Project extends Model
         return $this->hasMany(Land::class)->where('status', 'sold');
     }
 
+        public function farms()
+    {
+        return $this->hasMany(Farm::class);
+    }
+
     public function farmsAvailable()
     {
         return $this->hasMany(Farm::class)->where('status', 'available');
@@ -92,13 +97,6 @@ class Project extends Model
     public function farmsSold()
     {
         return $this->hasMany(Farm::class)->where('status', 'sold');
-    }
-
-
-
-    public function farms()
-    {
-        return $this->hasMany(Farm::class);
     }
 
     public function facilities()
