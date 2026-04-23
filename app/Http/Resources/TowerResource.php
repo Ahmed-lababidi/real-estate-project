@@ -49,6 +49,10 @@ class TowerResource extends JsonResource
 
             'images' => TowerImageResource::collection($this->whenLoaded('images')),
 
+            'apartments' => ApartmentResource::collection($this->whenLoaded('apartments')),
+            'apartments_available_count' => $this->whenCounted('apartmentsAvailable'),
+            'apartments_reserved_count' => $this->whenCounted('apartmentsReserved'),
+            'apartments_sold_count' => $this->whenCounted('apartmentsSold'),
             'apartments_count' => $this->whenCounted('apartments'),
             'created_at' => $this->created_at,
         ];
