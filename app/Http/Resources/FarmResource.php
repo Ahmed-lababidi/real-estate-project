@@ -33,9 +33,14 @@ class FarmResource extends JsonResource
             'location_within_project_en' => $this->location_within_project_en,
 
             'rooms_number' => $this->rooms_number,
+            'bathrooms' => $this->bathrooms,
+            'has_parking' => $this->has_parking,
+            'has_pool' => $this->has_pool,
+            'has_garden' => $this->has_garden,
 
             'area' => $this->area,
             'price' => $this->price,
+            'meter_price' => (int)($this->price / $this->area),
 
             'status' => $this->status,
             'status_label' => match ($this->status) {

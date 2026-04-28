@@ -18,6 +18,10 @@ class Farm extends Model
         'description_en',
         'area',
         'rooms_number',
+        'bathrooms',
+        'has_parking',
+        'has_pool',
+        'has_garden',
         'price',
         'location_within_project',
         'location_within_project_en',
@@ -32,6 +36,10 @@ class Farm extends Model
         'price' => 'decimal:2',
         'status' => FarmStatus::class,
         'rooms_number' => 'integer',
+        'bathrooms' => 'integer',
+        'has_parking' => 'boolean',
+        'has_pool' => 'boolean',
+        'has_garden' => 'boolean',
     ];
 
     public function project()

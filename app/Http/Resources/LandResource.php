@@ -36,6 +36,7 @@ class LandResource extends JsonResource
 
             'area' => $this->area,
             'price' => $this->price,
+            'meter_price' => (int)($this->price / $this->area),
 
             'status' => $this->status,
             'status_label' => match ($this->status) {

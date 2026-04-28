@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\ContactRequestController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\FacilityController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FarmController;
 use App\Http\Controllers\Admin\ProjectCategoryController;
 use App\Http\Controllers\Admin\ProjectController;
@@ -32,6 +33,7 @@ use App\Http\Controllers\Public\PublicTowerController;
 use App\Http\Controllers\Public\PublicFilterController;
 use App\Http\Controllers\Public\PublicLandController;
 use App\Http\Controllers\Public\PublicLandReservationController;
+use App\Http\Controllers\Public\PublicFaqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +83,9 @@ Route::prefix('v1')->middleware('throttle:public-api')->group(function () {
     Route::post('/store-token', [NotificationController::class, 'storeToken']);
 
     Route::get('/filters', [PublicFilterController::class, 'index']);
+
+    Route::get('/faqs', [PublicFaqController::class, 'index']);
+    Route::get('/faqs/{faq}', [PublicFaqController::class, 'show']);
 });
 
 /*
@@ -113,6 +118,10 @@ Route::prefix('v1/admin')->group(function () {
 
         Route::apiResource('lands', LandController::class);
 
+        Route::apiResource('banners', BannerController::class);
+
+        Route::apiResource('faqs', FaqController::class);
+
         Route::get('farm-reservations', [FarmReservationController::class, 'index']);
         Route::get('farm-reservations/{reservation}', [FarmReservationController::class, 'show']);
         Route::post('farm-reservations/{reservation}/confirm', [FarmReservationController::class, 'confirm']);
@@ -128,7 +137,6 @@ Route::prefix('v1/admin')->group(function () {
         Route::post('reservations/{reservation}/confirm', [ApartmentReservationController::class, 'confirm']);
         Route::post('reservations/{reservation}/cancel', [ApartmentReservationController::class, 'cancel']);
 
-        Route::apiResource('banners', BannerController::class);
 
         Route::get('leads', [ContactRequestController::class, 'index']);
         Route::get('leads/{lead}', [ContactRequestController::class, 'show']);
