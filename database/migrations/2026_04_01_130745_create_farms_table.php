@@ -21,6 +21,10 @@ return new class extends Migration
             $table->longText('description_en')->nullable();
             $table->decimal('area', 10, 2);
             $table->unsignedTinyInteger('rooms_number')->nullable();
+            $table->unsignedTinyInteger('bathrooms')->nullable();
+            $table->boolean('has_parking')->default(false);
+            $table->boolean('has_pool')->default(false);
+            $table->boolean('has_garden')->default(false);
             $table->decimal('price', 12, 2);
             $table->string('location_within_project')->nullable();
             $table->string('location_within_project_en')->nullable();
